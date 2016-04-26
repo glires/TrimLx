@@ -1,7 +1,7 @@
 #
 # TrimLx
 #
-# Last updated on 2016-04-10 by Kohji OKAMURA, Ph.D.
+# Last updated on 2016-04-26 by Kohji OKAMURA, Ph.D.
 #
 # Note that OS X gcc does not accept option -s.
 
