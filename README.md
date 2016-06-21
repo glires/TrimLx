@@ -1,6 +1,12 @@
 # TrimLx
 Trim words or phrases in a tab-delimited file for a pipeline use of less -S -x
 
+## Install
+    $ ls -l    # check trimlx.c and makefile
+    $ make     # compile and link using gcc
+    $ ls -l    # check trimlx
+    $ sudo mv -i trimlx /usr/local/bin/    # or somewhere else
+
 ## Synopsis
     trimlx [-h] [-x width] input.tsv
 
