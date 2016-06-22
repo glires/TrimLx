@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# triml - sh script to execute trimlx
+#
+# SYNOPSIS
+#   triml [tab_width] [intput_file]
+#
+# DESCRIPTION
+#   This sh script gets input data and a number of tab width
+#   and execute trimlx with less.
+#   The trimlx executable file should be saved in a directory
+#   which is included in the PATH list.
+#
+# USAGE
+#   $ triml foo.txt
+#   $ triml 12 bar.txt
+#   $ cat baz.txt | triml
+#   $ cat qux.txt | triml 16
+#
+# AUTHOR
+#   Coded by Kohji OKAMURA, Ph.D.
+#
+# HISTORY
+#   2016-06-22  The first version
+#
+cw=8	# default tab width
+if [ $# -eq 0 ]; then	# no argument
+  trimlx -x $cw | less -S -x $cw
+elif [ $# -eq 1 ]; then	# one argument
+  expr "$1" + 1 > /dev/null 2>&1
+  if [ $? -lt 2 ]; then
+    trimlx -x $1 | less -S -x $1
+  else
+    trimlx -x $cw $1 | less -S -x $cw
+  fi
+else	# two or more arguments
+  trimlx -x $1 $2 | less -S -x $1
+fi
