@@ -1,7 +1,7 @@
 #
-# TrimLx
+# TrimLx Makefile
 #
-# Last updated on 2016-04-26 by Kohji OKAMURA, Ph.D.
+# Last updated on 2016-06-23 by Kohji OKAMURA, Ph.D.
 #
 # Note that OS X gcc does not accept option -s.
 
@@ -24,5 +24,6 @@ trimlx.o: trimlx.c
 	$(CC) $(CFLAGS) $(ANSI) -c trimlx.c
 
 .PHONY: clean
+
 clean:
 	rm -f $(PROGRAM) trimlx.o
