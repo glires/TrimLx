@@ -6,7 +6,7 @@ Trim words or phrases in a tab-delimited file for a pipeline use of less -S -x
     $ make     # compile and link using gcc
     $ ls -l    # check trimlx and triml
     $ chmod +x triml
-    $ sudo mv -i trimlx triml /usr/local/bin/    # or somewhere else
+    $ sudo mv -i trimlx triml /usr/local/bin/    # or somewhere else
 
 ## Synopsis
     triml [[-x] tab_stop_length] [input.tsv]
