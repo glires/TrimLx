@@ -37,6 +37,7 @@
 /*   2016-04-11  Use fputs() instead of fprintf()                            */
 /*   2016-04-21  Use freopen() to handle stdin                               */
 /*   2016-04-26  Released via GitHub                                         */
+/*   2017-04-26  Avoid warn_unused_result for the use of freopen()           */
 /*                                                                           */
 
 
@@ -83,7 +84,7 @@ int main(int argc, char *argv[])
   if (check != NULL)
   {
     fclose(check);
-    freopen(argv[argc - 1], "r", stdin);
+    check = freopen(argv[argc - 1], "r", stdin);
   }
 
   while (fgets(line, MAX_CHAR_LONG, stdin) != NULL)
