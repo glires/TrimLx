@@ -37,7 +37,9 @@
 /*   2016-04-11  Use fputs() instead of fprintf()                            */
 /*   2016-04-21  Use freopen() to handle stdin                               */
 /*   2016-04-26  Released via GitHub                                         */
-/*   2017-04-26  Avoid warn_unused_result for the use of freopen()           */
+/*   2016-06-23  As the command, sh script triml provided                    */
+/*   2016-07-07  Make-believe option -x added for triml                      */
+/*   2017-04-26  Avoid warn_unused_result for the use of freopen(), ver. 0.3 */
 /*                                                                           */
 
 
@@ -45,7 +47,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define VERSION        "0.1"
+#define VERSION        "0.3"
 #define MAX_CHAR_LONG  0x8000
 #define MAX_CHAR_SHORT 0x4000
 #define MIN_CHAR       0x1
