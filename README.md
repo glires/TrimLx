@@ -37,4 +37,5 @@ Kohji OKAMURA, Ph.D.
     2016-04-10  Rewritten in C
     2016-04-26  Released via GitHub
     2016-06-23  As the command, sh script triml provided
-    2016-07-07  Make-believe option -x added for triml ver. 0.2
+    2016-07-07  Make-believe option -x added
+    2017-04-26  Avoid warn_unused_result for the use of freopen(), ver. 0.3
