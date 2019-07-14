@@ -1,0 +1,86 @@
+#!/bin/bash
+#!/bin/sh	# /bin/dash on Ubuntu does not interpret the following script
+#
+# triml - sh script to execute trimlx
+#
+# SYNOPSIS
+#   triml [[-x] tab_stop_length (default: 8)] [intput_file]
+#
+# DESCRIPTION
+#   This sh script gets input data (tab-delimited text file)
+#   and a number of tab-stop length and execute trimlx with less -S.
+#   The trimlx executable file should be saved in a directory
+#   which is included in the PATH list.
+#   The default value for the tab-stop length is 8.
+#
+# USAGE
+#   $ triml -v
+#   $ triml foo.tsv
+#   $ triml 12 foo.tsv
+#   $ triml -x12 foo.tsv
+#   $ triml -x 12 foo.tsv
+#   $ triml foo.tsv 12
+#   $ cat baz.tsv qux.tsv | triml
+#   $ cat baz.tsv qux.tsv | triml 14
+#   $ cat baz.tsv qux.tsv | triml -x14
+#   $ cat baz.tsv qux.tsv | triml -x 14
+#
+# AUTHOR
+#   Coded by Kohji OKAMURA, Ph.D.
+#
+# HISTORY
+#   2016-06-22  The first version
+#   2016-07-06  Support adding option -x
+#   2016-07-07  Release as ver. 0.2
+#   2019-07-14  Replace the shebang for tiresome Ubutu; ver. 0.3.1
+#
+
+ver=0.3.1
+cw=8	# default tab-stop length
+if [ $# -eq 0 ]; then	# no argument
+  trimlx -x $cw | less -S -x $cw
+					# $ triml
+elif [ $# -eq 1 ]; then	# one argument
+  expr "$1" + 1 > /dev/null 2>&1
+  if [ $? -lt 2 ]; then
+    trimlx -x $1 | less -S -x $1
+					# $ triml 11
+  elif [ $1 = '-v' ]; then
+    echo triml ver. $ver
+    trimlx -v
+  elif [ $1 = '-x' ]; then
+    trimlx -x $cw | less -S -x $cw
+					# $ triml -x
+  elif [ ${1:0:2} = '-x' -a ${#1} -gt 2 ]; then
+    cw=${1:2}
+    trimlx -x $cw | less -S -x $cw
+					# $ triml -x11
+  else
+    trimlx -x $cw $1 | less -S -x $cw
+					# $ triml foo.tsv
+  fi
+elif [ $# -eq 2 ]; then	# two arguemtns
+  expr "$1" + 1 > /dev/null 2>&1
+  if [ $? -lt 2 ]; then
+    trimlx -x $1 $2 | less -S -x $1
+					# $ triml 11 foo.tsv
+  elif [ $1 = '-x' ]; then
+    trimlx $1 $2 | less -S -x $2
+					# $ triml -x 11
+  elif [ ${1:0:2} = '-x' -a ${#1} -gt 2 ]; then
+    cw=${1:2}
+    trimlx -x $cw $2 | less -S -x $cw
+					# $ triml -x11 foo.tsv
+  else
+    trimlx -x $2 $1 | less -S -x $2
+					# $ triml foo.tsv 11 ?
+  fi
+else	# three or more arguments
+  if [ $1 = '-x' ]; then
+    trimlx -x $2 $3 | less -S -x $2
+					# $ triml -x 11 foo.tsv
+  else
+    trimlx $1 $2 $3 | less -S -x $2
+					# $ triml ?
+  fi
+fi
